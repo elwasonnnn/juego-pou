@@ -1,69 +1,69 @@
 import pygame
 
 
-WIDTH, HEIGHT = 550, 900
-BACKGROUND = (230, 242, 255)
-TEXT_COLOR = (35, 45, 65)
-BUTTON_COLOR = (70, 130, 180)
-BUTTON_HOVER_COLOR = (50, 105, 155)
-BUTTON_TEXT_COLOR = (255, 255, 255)
+AMPLADA, ALCADA = 550, 900
+COLOR_PANTALLA = (230, 242, 255)
+COLOR_TEXT = (35, 45, 65)
+COLOR_BOTO = (70, 130, 180)
+COLOR_BOTO_ACTIU = (50, 105, 155)
+COLOR_TEXT_BOTO = (255, 255, 255)
 
 
-def main():
+def mostrar_pantalla_principal():
     pygame.init()
-    screen = pygame.display.set_mode((WIDTH, HEIGHT))
+    pantalla = pygame.display.set_mode((AMPLADA, ALCADA))
     pygame.display.set_caption("Pou - Menú principal")
-    clock = pygame.time.Clock()
+    rellotge = pygame.time.Clock()
 
-    title_font = pygame.font.SysFont("Arial", 42, bold=True)
-    button_font = pygame.font.SysFont("Arial", 25, bold=True)
-    message_font = pygame.font.SysFont("Arial", 18)
+    lletra_titol = pygame.font.SysFont("Arial", 42, bold=True)
+    lletra_boto = pygame.font.SysFont("Arial", 25, bold=True)
+    lletra_missatge = pygame.font.SysFont("Arial", 18)
 
-    buttons = [
-        (pygame.Rect(75, 290, 400, 70), "Iniciar sesión", "iniciar sesión"),
-        (pygame.Rect(75, 390, 400, 70), "Registrarse", "registro"),
-        (pygame.Rect(75, 490, 400, 70), "Tabla de puntuación", "tabla de puntuación"),
-        (pygame.Rect(75, 590, 400, 70), "Salir", "salir"),
+    botons = [
+        (pygame.Rect(75, 290, 400, 70), "Iniciar sessió", "iniciar sessió"),
+        (pygame.Rect(75, 390, 400, 70), "Registrar-se", "registre"),
+        (pygame.Rect(75, 490, 400, 70), "Classificació", "classificació"),
+        (pygame.Rect(75, 590, 400, 70), "Sortir", "sortir"),
     ]
-    message = ""
-    running = True
+    missatge = ""
+    en_marxa = True
 
-    while running:
-        mouse_position = pygame.mouse.get_pos()
+    while en_marxa:
+        posicio_ratoli = pygame.mouse.get_pos()
 
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-            elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                for rect, _, action in buttons:
-                    if rect.collidepoint(event.pos):
-                        if action == "salir":
-                            running = False
+        for esdeveniment in pygame.event.get():
+            if esdeveniment.type == pygame.QUIT:
+                en_marxa = False
+            elif esdeveniment.type == pygame.MOUSEBUTTONDOWN and esdeveniment.button == 1:
+                for rectangle, _, accio in botons:
+                    if rectangle.collidepoint(esdeveniment.pos):
+                        if accio == "sortir":
+                            en_marxa = False
                         else:
-                            message = f"La pantalla de {action} aún no está disponible."
+                            missatge = f"La pantalla de {accio} encara no està disponible."
 
-        screen.fill(BACKGROUND)
-        title = title_font.render("Pou - Bienvenido!", True, TEXT_COLOR)
-        screen.blit(title, title.get_rect(center=(WIDTH // 2, 175)))
+        pantalla.fill(COLOR_PANTALLA)
+        titol = lletra_titol.render("Pou - Benvingut!", True, COLOR_TEXT)
+        pantalla.blit(titol, titol.get_rect(center=(AMPLADA // 2, 175)))
 
-        for rect, label, _ in buttons:
-            color = BUTTON_HOVER_COLOR if rect.collidepoint(mouse_position) else BUTTON_COLOR
-            pygame.draw.rect(screen, color, rect, border_radius=12)
-            button_text = button_font.render(label, True, BUTTON_TEXT_COLOR)
-            screen.blit(button_text, button_text.get_rect(center=rect.center))
+        for rectangle, text_boto, _ in botons:
+            color = COLOR_BOTO_ACTIU if rectangle.collidepoint(posicio_ratoli) else COLOR_BOTO
+            pygame.draw.rect(pantalla, color, rectangle, border_radius=12)
+            text_renderitzat = lletra_boto.render(text_boto, True, COLOR_TEXT_BOTO)
+            pantalla.blit(text_renderitzat, text_renderitzat.get_rect(center=rectangle.center))
 
-        if message:
-            rendered_message = message_font.render(message, True, TEXT_COLOR)
-            screen.blit(
-                rendered_message,
-                rendered_message.get_rect(center=(WIDTH // 2, 720)),
+        if missatge:
+            missatge_renderitzat = lletra_missatge.render(missatge, True, COLOR_TEXT)
+            pantalla.blit(
+                missatge_renderitzat,
+                missatge_renderitzat.get_rect(center=(AMPLADA // 2, 720)),
             )
 
         pygame.display.flip()
-        clock.tick(60)
+        rellotge.tick(60)
 
     pygame.quit()
 
 
 if __name__ == "__main__":
-    main()
+    mostrar_pantalla_principal()
