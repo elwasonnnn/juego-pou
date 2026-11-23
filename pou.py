@@ -2,6 +2,8 @@ import pygame
 import sys
 import random
 
+# angel
+
 pygame.init()
 saltant = 0
 WIDTH = 1500
