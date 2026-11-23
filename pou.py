@@ -3,6 +3,7 @@ import sys
 import random
 
 # angel
+#roc
 
 pygame.init()
 saltant = 0
