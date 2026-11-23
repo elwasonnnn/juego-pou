@@ -2,9 +2,6 @@ import pygame
 import sys
 import random
 
-# angel
-#roc
-
 pygame.init()
 saltant = 0
 WIDTH = 1500
