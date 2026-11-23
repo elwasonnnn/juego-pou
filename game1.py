@@ -1,7 +1,9 @@
+from curses.textpad import rectangle
+
 import pygame
 
 
-AMPLADA, ALCADA = 550, 900
+AMPLADA, ALCADA = 550, 1080    
 COLOR_PANTALLA = (230, 242, 255)
 COLOR_TEXT = (35, 45, 65)
 COLOR_BOTO = (70, 130, 180)
@@ -67,3 +69,11 @@ def mostrar_pantalla_principal():
 
 if __name__ == "__main__":
     mostrar_pantalla_principal()
+
+def PantallaIniciarSessio():
+    if mouse.get_pressed()[0]:  # Comprova si s'ha fet clic amb el botó esquerre del ratolí
+        pygame.init()
+        pantalla = pygame.display.set_mode((AMPLADA, ALCADA))
+        pygame.display.set_caption("Pou - Menú principal")
+        rellotge = pygame.time.Clock()
+        
